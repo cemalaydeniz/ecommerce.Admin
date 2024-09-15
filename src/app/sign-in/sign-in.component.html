@@ -1,0 +1,22 @@
+<div class="sign-in-header-container">
+    <h1 class="sign-in-header">E-Commerce Admin</h1>
+</div>
+<div class="sign-in-container">
+    <form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+        <mat-form-field>
+            <mat-label>Enter email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email" required />
+            <mat-error *ngIf="controls['email'].errors != null && controls['email'].errors['required']">Email address is required</mat-error>
+            <mat-error *ngIf="controls['email'].errors != null && controls['email'].errors['email']">Email address is not valid</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Enter password</mat-label>
+            <input matInput [type]="hidePassword ? 'password' : 'text'" required />
+            <button mat-icon-button matSuffix (click)="onPasswordToggleClick($event)" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="controls['password'].errors != null && controls['password'].errors['required']">Password is required</mat-error>
+        </mat-form-field>
+    </form>
+</div>
