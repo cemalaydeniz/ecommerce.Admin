@@ -24,9 +24,7 @@ export class SignInComponent {
     return this.signInForm.controls;
   }
 
-  onPasswordToggleClick(e): void {
-    e.stopPropagation();
-
+  onPasswordToggle(): void {
     this.hidePassword = !this.hidePassword;
   }
 
