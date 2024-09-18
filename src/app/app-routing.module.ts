@@ -5,11 +5,14 @@ import { LayoutComponent } from './admin/layout/layout.component';
 import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: SignInComponent },
-  { path: 'admin', component: LayoutComponent, children: [
-      { path: '', loadChildren: () => import('./admin/components/home/home.module').then(module => module.HomeModule), canActivate: [authGuard] }
-    ], canActivate: [authGuard]
-  }
+  { path: 'admin', children: [
+    { path: '', component: LayoutComponent, children: [
+        { path: 'home', loadChildren: () => import('./admin/components/home/home.module').then(module => module.HomeModule) }
+      ], canActivate: [authGuard]
+    },
+    { path: 'sign-in', component: SignInComponent },
+  ]},
+  { path: '**', redirectTo: 'admin/home' }
 ];
 
 @NgModule({

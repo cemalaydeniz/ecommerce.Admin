@@ -1,1 +1,25 @@
-<p>layout works!</p>
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" [opened]="isNavOpened">
+        <div class="sidenav-link" [routerLink]="['/admin/home']" routerLinkActive="active">
+            <mat-icon fontIcon="home"></mat-icon>
+            <span>Home</span>
+        </div>
+        <!-- WAITING: the sign-out system in the backend should be implemented first -->
+        <div class="sidenav-link" [routerLink]="['/admin/sign-out']" routerLinkActive="active">
+            <mat-icon fontIcon="logout"></mat-icon>
+            <span>Sign Out</span>
+        </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content-container">
+        <div class="content-header">
+            <button class="sidenav-btn" (click)="onSidenavToggle()">
+                <mat-icon *ngIf="!isNavOpened" fontIcon="keyboard_double_arrow_right"></mat-icon>
+                <mat-icon *ngIf="isNavOpened" fontIcon="keyboard_double_arrow_left"></mat-icon>
+            </button>
+        </div>
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
